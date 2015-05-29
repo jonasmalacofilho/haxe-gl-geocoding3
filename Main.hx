@@ -1,7 +1,7 @@
 import haxe.Json;
 import google.Geocoding3;
 
-class GoogleGeocoding {
+class Main {
 	
 	static function main() {
 		var opt = new Hash<Dynamic>();
