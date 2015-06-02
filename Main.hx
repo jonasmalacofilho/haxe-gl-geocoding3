@@ -4,7 +4,7 @@ import google.Geocoding3;
 class Main {
 	
 	static function main() {
-		var opt = new Hash<Dynamic>();
+		var opt = new Map<String,Dynamic>();
 		var optPush = function ( key, value: Dynamic ) {
 			if ( opt.exists( key ) )
 				opt.get( key ).push( value );
@@ -49,9 +49,9 @@ class Main {
 			obj = new Geocoding3( Address( opt.get( '_input' ), opt.get( 'components' ) ) );
 		if ( opt.exists( '--sql' ) ) {
 			var sql = opt.get( '--sql' );
-			Sys.println( Std.format( 'CREATE TABLE IF NOT EXISTS \"${sql.table}\" ( label TEXT, formattedAddress TEXT, lat REAL, lon REAL, geometryLocationType TEXT, PRIMARY KEY ( label ) );' ) );
+			Sys.println( 'CREATE TABLE IF NOT EXISTS  \"${sql.table}\" ( label TEXT, formattedAddress TEXT, lat REAL, lon REAL, geometryLocationType TEXT, PRIMARY KEY ( label ) );' );
 			for ( r in obj.request( opt.get( '--region' ), opt.get( '--language' ) ) )
-				Sys.println( Std.format( 'INSERT OR REPLACE INTO \"${sql.table}\" ( label, formattedAddress, lat, lon, geometryLocationType ) VALUES ( \'${sql.label}\', \'${r.formattedAddress}\', ${r.lat}, ${r.lon}, \'${r.geometryLocationType}\' );' ) );
+				Sys.println( 'INSERT OR REPLACE INTO \"${sql.table}\" ( label, formattedAddress, lat, lon, geometryLocationType ) VALUES ( \'${sql.label}\', \'${r.formattedAddress}\', ${r.lat}, ${r.lon}, \'${r.geometryLocationType}\' );' ) ;
 		}
 		else {
 			for ( r in obj.request( opt.get( '--region' ), opt.get( '--language' ) ) )

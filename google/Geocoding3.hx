@@ -4,7 +4,7 @@ import haxe.Http;
 import haxe.Json;
 import haxe.Utf8;
 
-import jonas.Vector;
+//import jonas.Vector;
 
 /*
  * Google Maps Geocoding API V3 Wrapper
@@ -44,7 +44,7 @@ class Geocoding3 {
 		responseStatusOk = false;
 		var cnx = new Http( apiUrl );
 		cnx.onData = function( data ) { response = Json.parse( data ); };
-		cnx.onError = function( msg ) { throw Std.format( 'http request raised "$msg"' ); };
+		cnx.onError = function( msg ) { throw 'http request raised $msg'; };
 		switch ( input ) {
 			case Address( address, components ):
 				if ( address != null )
@@ -64,7 +64,7 @@ class Geocoding3 {
 			case LatLon( latLon ):
 				cnx.setParameter( 'latlng', latLon );
 			default:
-				throw Std.format( 'bad input $input' );
+				throw  'bad input $input';
 		}
 		if ( null != region )
 			cnx.setParameter( 'region', region );
@@ -75,7 +75,7 @@ class Geocoding3 {
 		if ( null != response ) {
 			responseStatusOk = response.status == 'OK';
 			if ( !responseStatusOk ) {
-				throw Std.format( 'Geocoding API return status = ${response.status}' );
+				throw 'Geocoding API return status = ${response.status}' ;
 			}
 		}
 		var x = new List();
