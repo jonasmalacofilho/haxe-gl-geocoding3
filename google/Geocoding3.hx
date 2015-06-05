@@ -4,8 +4,6 @@ import haxe.Http;
 import haxe.Json;
 import haxe.Utf8;
 
-//import jonas.Vector;
-
 /*
  * Google Maps Geocoding API V3 Wrapper
  * Based on the wrapper distributed under the MIT License by Jonas Malaco Filho, Copyright (c) 2012
